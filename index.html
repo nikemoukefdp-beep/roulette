@@ -1,97 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roleta Russa</title>
+<title>Russian Roulette</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- MENU -->
 <div id="screen-menu" class="screen active">
-  <div class="menu-bg"></div>
-  <h1 class="title">ROLETA<br>RUSSA</h1>
-  <div class="difficulty-section">
-    <p class="label">DIFICULDADE</p>
-    <div class="diff-buttons">
-      <button class="diff-btn active" data-diff="easy">FÁCIL</button>
-      <button class="diff-btn" data-diff="medium">MÉDIO</button>
-      <button class="diff-btn" data-diff="hard">DIFÍCIL</button>
+  <h1 class="title">RUSSIAN<br>ROULETTE</h1>
+  <div class="diff-section">
+    <p class="small-label">DIFFICULTY</p>
+    <div class="diff-row">
+      <button class="diff-btn active" data-diff="easy">EASY</button>
+      <button class="diff-btn" data-diff="medium">MEDIUM</button>
+      <button class="diff-btn" data-diff="hard">HARD</button>
     </div>
-    <p class="diff-desc" id="diff-desc">Bot hesita mais. Spin frequente.</p>
+    <p id="diff-desc" class="diff-desc">Bot spins often. Less aggressive.</p>
   </div>
-  <button class="start-btn" id="btn-start">JOGAR</button>
-  <div class="rules-box">
-    <p>🎲 1/6 chance de bala por gatilho</p>
-    <p>🔄 SPIN reseta as chances (1x por turno)</p>
-    <p>🎯 ATIRAR — você atira em si mesmo</p>
-    <p>💀 ATIRAR OUTRO — atira no oponente</p>
+  <button id="btn-start" class="big-btn">PLAY</button>
+  <div class="rules">
+    <p>🔄 SPIN — resets bullet position (once per turn), spin option disappears after.</p>
+    <p>🎯 SHOOT — shoot yourself. Empty = nothing, turn ends. Hit = you die, round restarts.</p>
+    <p>💀 SHOOT OTHER — shoot opponent. Empty = nothing. Hit = they die, round restarts.</p>
+    <p>Each player has 3 lives. Lose all 3 and you lose.</p>
   </div>
 </div>
 
+<!-- INITIAL SPIN SCREEN -->
 <div id="screen-spin" class="screen">
-  <h2 class="spin-title">GIRANDO PARA VER QUEM COMEÇA...</h2>
-  <div class="gun-center-wrap">
-    <img id="gun-spinner" class="gun-spinner" src="" alt="pistola">
+  <p class="spin-title">SPINNING TO SEE WHO GOES FIRST...</p>
+  <div class="spin-stage">
+    <div class="spin-char">
+      <img id="spin-img-player" src="" alt="you">
+      <span>YOU</span>
+    </div>
+    <div class="spin-gun-wrap">
+      <img id="gun-spinner" src="" alt="gun">
+    </div>
+    <div class="spin-char">
+      <img id="spin-img-bot" src="" alt="bot">
+      <span>BOT</span>
+    </div>
   </div>
-  <p class="spin-result" id="spin-result"></p>
+  <p id="spin-result" class="spin-result"></p>
 </div>
 
+<!-- GAME SCREEN -->
 <div id="screen-game" class="screen">
   <div class="hud">
-    <div class="hud-player">
-      <span class="hud-label">VOCÊ</span>
-      <div class="lives" id="player-lives"></div>
+    <div class="hud-side">
+      <span class="hud-name">YOU</span>
+      <div id="player-lives" class="lives"></div>
     </div>
-    <div class="hud-center">
-      <div class="bullet-indicator" id="bullet-indicator">
-        <span class="bi-label">CÂMARA</span>
-        <div class="chambers" id="chambers"></div>
-      </div>
-    </div>
-    <div class="hud-bot">
-      <div class="lives" id="bot-lives"></div>
-      <span class="hud-label">BOT</span>
+    <div id="chambers" class="chambers"></div>
+    <div class="hud-side">
+      <div id="bot-lives" class="lives"></div>
+      <span class="hud-name">BOT</span>
     </div>
   </div>
 
   <div class="arena">
-    <div class="character-slot left" id="slot-player">
-      <img class="char-img" id="img-player" src="" alt="player">
-      <span class="char-label">VOCÊ</span>
+    <div class="char-slot">
+      <img id="img-player" src="" alt="player">
+      <span class="char-name">YOU</span>
     </div>
-
-    <div class="center-gun-area" id="center-gun-area">
-      <img id="center-gun" class="center-gun hidden" src="" alt="gun">
-    </div>
-
-    <div class="character-slot right" id="slot-bot">
-      <img class="char-img" id="img-bot" src="" alt="bot">
-      <span class="char-label">BOT</span>
+    <div class="char-slot">
+      <img id="img-bot" src="" alt="bot">
+      <span class="char-name">BOT</span>
     </div>
   </div>
 
-  <div class="action-area" id="action-area">
-    <div class="turn-indicator" id="turn-indicator">SEU TURNO</div>
-    <div class="action-buttons" id="action-buttons">
-      <button class="action-btn spin-btn" id="btn-spin">🔄 SPIN</button>
-      <button class="action-btn shoot-btn" id="btn-shoot">🎯 ATIRAR</button>
-      <button class="action-btn shoot-other-btn" id="btn-shoot-other">💀 ATIRAR OUTRO</button>
+  <div class="bottom">
+    <div id="turn-label" class="turn-label">YOUR TURN</div>
+    <div class="action-btns">
+      <button id="btn-spin" class="action-btn btn-spin">🔄 SPIN</button>
+      <button id="btn-shoot" class="action-btn btn-shoot">🎯 SHOOT</button>
+      <button id="btn-shoot-other" class="action-btn btn-other">💀 SHOOT OTHER</button>
     </div>
-    <p class="status-msg" id="status-msg"></p>
+    <p id="status-msg" class="status-msg">&nbsp;</p>
   </div>
 </div>
 
+<!-- GAME OVER SCREEN -->
 <div id="screen-gameover" class="screen">
-  <div class="gameover-content">
-    <h2 class="gameover-title" id="gameover-title">GAME OVER</h2>
-    <img class="gameover-img" id="gameover-img" src="" alt="">
-    <p class="gameover-msg" id="gameover-msg"></p>
-    <div class="gameover-buttons">
-      <button class="start-btn" id="btn-restart">JOGAR DE NOVO</button>
-      <button class="start-btn secondary" id="btn-menu">MENU</button>
-    </div>
-  </div>
+  <h2 id="go-title" class="go-title"></h2>
+  <img id="go-img" class="go-img" src="" alt="">
+  <p id="go-msg" class="go-msg"></p>
+  <button id="btn-restart" class="big-btn">PLAY AGAIN</button>
+  <button id="btn-menu" class="big-btn secondary">MENU</button>
 </div>
 
 <script src="images.js"></script>
