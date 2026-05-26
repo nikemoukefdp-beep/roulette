@@ -22,14 +22,14 @@
   </div>
   <button id="btn-start" class="big-btn">PLAY</button>
   <div class="rules">
-    <p>🔄 SPIN — resets bullet position (once per turn), spin option disappears after.</p>
-    <p>🎯 SHOOT — shoot yourself. Empty = nothing, turn ends. Hit = you die, round restarts.</p>
+    <p>🔄 SPIN — randomises bullet (once per turn, then option disappears).</p>
+    <p>🎯 SHOOT — shoot yourself. Empty = turn passes. Hit = you die, round restarts.</p>
     <p>💀 SHOOT OTHER — shoot opponent. Empty = nothing. Hit = they die, round restarts.</p>
-    <p>Each player has 3 lives. Lose all 3 and you lose.</p>
+    <p>3 lives each. Lose all 3 and you lose the game.</p>
   </div>
 </div>
 
-<!-- INITIAL SPIN SCREEN -->
+<!-- INITIAL SPIN -->
 <div id="screen-spin" class="screen">
   <p class="spin-title">SPINNING TO SEE WHO GOES FIRST...</p>
   <div class="spin-stage">
@@ -37,18 +37,16 @@
       <img id="spin-img-player" src="" alt="you">
       <span>YOU</span>
     </div>
-    <div class="spin-gun-wrap">
-      <img id="gun-spinner" src="" alt="gun">
-    </div>
+    <img id="gun-spinner" src="" alt="gun">
     <div class="spin-char">
       <img id="spin-img-bot" src="" alt="bot">
       <span>BOT</span>
     </div>
   </div>
-  <p id="spin-result" class="spin-result"></p>
+  <p id="spin-result" class="spin-result">&nbsp;</p>
 </div>
 
-<!-- GAME SCREEN -->
+<!-- GAME -->
 <div id="screen-game" class="screen">
   <div class="hud">
     <div class="hud-side">
@@ -61,36 +59,34 @@
       <span class="hud-name">BOT</span>
     </div>
   </div>
-
   <div class="arena">
     <div class="char-slot">
       <img id="img-player" src="" alt="player">
-      <span class="char-name">YOU</span>
+      <span class="char-label">YOU</span>
     </div>
     <div class="char-slot">
       <img id="img-bot" src="" alt="bot">
-      <span class="char-name">BOT</span>
+      <span class="char-label">BOT</span>
     </div>
   </div>
-
   <div class="bottom">
     <div id="turn-label" class="turn-label">YOUR TURN</div>
     <div class="action-btns">
-      <button id="btn-spin" class="action-btn btn-spin">🔄 SPIN</button>
-      <button id="btn-shoot" class="action-btn btn-shoot">🎯 SHOOT</button>
-      <button id="btn-shoot-other" class="action-btn btn-other">💀 SHOOT OTHER</button>
+      <button id="btn-spin"        class="action-btn">🔄 SPIN</button>
+      <button id="btn-shoot"       class="action-btn">🎯 SHOOT</button>
+      <button id="btn-shoot-other" class="action-btn">💀 SHOOT OTHER</button>
     </div>
     <p id="status-msg" class="status-msg">&nbsp;</p>
   </div>
 </div>
 
-<!-- GAME OVER SCREEN -->
+<!-- GAME OVER -->
 <div id="screen-gameover" class="screen">
   <h2 id="go-title" class="go-title"></h2>
   <img id="go-img" class="go-img" src="" alt="">
   <p id="go-msg" class="go-msg"></p>
   <button id="btn-restart" class="big-btn">PLAY AGAIN</button>
-  <button id="btn-menu" class="big-btn secondary">MENU</button>
+  <button id="btn-menu"    class="big-btn sec">MENU</button>
 </div>
 
 <script src="images.js"></script>
